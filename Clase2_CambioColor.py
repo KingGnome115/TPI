@@ -23,10 +23,11 @@ cv2.waitKey(0)
 
 b, g, r = cv2.split(img)
 cv2.imshow('blue',b)
-cv2.waitKey(0)
 cv2.imshow('green',g)
-cv2.waitKey(0)
 cv2.imshow('red',r)
+
+src=cv2.merge([r,g,b])
+cv2.imshow('Change Image',src)
 cv2.waitKey(0)
 
 cv2.destroyAllWindows(0)
