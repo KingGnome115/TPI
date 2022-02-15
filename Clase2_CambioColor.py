@@ -26,7 +26,11 @@ cv2.imshow('blue',b)
 cv2.imshow('green',g)
 cv2.imshow('red',r)
 
-src=cv2.merge([r,g,b])
+#src = cv2.merge([r,g,b])
+#src = cv2.merge([g,r,b])
+#src = cv2.merge([b,g,r])
+#src = cv2.merge([b,r,g])
+src = cv2.merge([r,b,g])
 cv2.imshow('Change Image',src)
 cv2.waitKey(0)
 
