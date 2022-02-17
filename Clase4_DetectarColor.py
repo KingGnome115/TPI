@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 
 captura = cv2.VideoCapture(0)
-yelloBajo = np.array([15,100,20], np.uint8)
-yelloAlto = np.array([45,255,255], np.uint8)
+yelloBajo = np.array([45,50,65], np.uint8)
+yelloAlto = np.array([55,255,255], np.uint8)
 
 while(captura.isOpened()):
     ret, imagen = captura.read()
