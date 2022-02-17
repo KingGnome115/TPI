@@ -1,4 +1,3 @@
-from matplotlib.pyplot import gray
 import numpy as np
 import cv2
 
