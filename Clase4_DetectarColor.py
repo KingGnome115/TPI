@@ -14,6 +14,9 @@ redAlto1 = np.array([10,255,255], np.uint8)
 redBajo2 = np.array([175,100,20], np.uint8)
 redAlto2 = np.array([179,255,255], np.uint8)
 
+azulBajo = np.array([100,100,115], np.uint8)
+azulAlto = np.array([120,255,255], np.uint8)
+
 while(captura.isOpened()):
     ret, imagen = captura.read()
     if ret == True:
@@ -26,19 +29,24 @@ while(captura.isOpened()):
         maskRedvis = cv2.bitwise_and(imagen, imagen, mask=maskRed) #Crear mascara de color rojo visualizado
         maskRed2 = cv2.inRange(frameSHV, redBajo2, redAlto2) #Crear mascara de color rojo
         maskRed2vid = cv2.bitwise_and(imagen, imagen, mask=maskRed2)
-        #unir mascaras
+        maskBlue = cv2.inRange(frameSHV, azulBajo, azulAlto) #Crear mascara de color azul
+        maskBluevis = cv2.bitwise_and(imagen, imagen, mask=maskBlue) #Crear mascara de color azul visualizado
+        #unir mascaras en una sola
         mask = cv2.add(maskYellow, maskGreen)
         mask = cv2.add(mask, maskRed)
         mask = cv2.add(mask, maskRed2)
-        maskvis = cv2.bitwise_and(imagen, imagen, mask=mask)
-
+        mask = cv2.add(mask, maskBlue)
+        #mostrar mask
+        
+        maskVis = cv2.bitwise_and(imagen, imagen, mask=mask)
+        cv2.imshow('mask', maskVis)
         #cv2.imshow('maskYellowVis', maskYellowvis)
         #cv2.imshow('maskGreenVis', maskGreenvis)
         #cv2.imshow('maskRedVis', maskRedvis)
         #cv2.imshow('maskRed2Vis', maskRed2vid)
         #cv2.imshow('maskYellow', maskYellow)
         #cv2.imshow('maskGreen', maskGreen)
-        cv2.imshow('mas', mask)
+        #cv2.imshow('mas', mask)
         cv2.imshow('Camara', imagen)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
