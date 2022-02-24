@@ -8,14 +8,17 @@ yelloAlto = np.array([45,255,255], np.uint8)
 greenBajo = np.array([30,100,20], np.uint8)
 greenAlto = np.array([80,255,255], np.uint8)
 
-redBajo1 = np.array([0,100,5], np.uint8)
-redAlto1 = np.array([10,255,255], np.uint8)
+redBajo1 = np.array([0,100,20], np.uint8)
+redAlto1 = np.array([180,255,255], np.uint8)
 
 redBajo2 = np.array([175,100,20], np.uint8)
 redAlto2 = np.array([179,255,255], np.uint8)
 
 azulBajo = np.array([100,100,115], np.uint8)
 azulAlto = np.array([120,255,255], np.uint8)
+
+orangeBajo1=np.array([11,100,20], np.uint8)
+orangeAlto1=np.array([19,255,255], np.uint8)
 
 while(captura.isOpened()):
     ret, imagen = captura.read()
@@ -31,11 +34,14 @@ while(captura.isOpened()):
         maskRed2vid = cv2.bitwise_and(imagen, imagen, mask=maskRed2)
         maskBlue = cv2.inRange(frameSHV, azulBajo, azulAlto) #Crear mascara de color azul
         maskBluevis = cv2.bitwise_and(imagen, imagen, mask=maskBlue) #Crear mascara de color azul visualizado
+        maskOrange = cv2.inRange(frameSHV, orangeBajo1, orangeAlto1) #Crear mascara de color naranja
+        maskOrangevis = cv2.bitwise_and(imagen, imagen, mask=maskOrange) #Crear mascara de color naranja visualizado
         #unir mascaras en una sola
         mask = cv2.add(maskYellow, maskGreen)
         mask = cv2.add(mask, maskRed)
         mask = cv2.add(mask, maskRed2)
         mask = cv2.add(mask, maskBlue)
+        mask = cv2.add(mask, maskOrange)
         #mostrar mask
         
         maskVis = cv2.bitwise_and(imagen, imagen, mask=mask)
