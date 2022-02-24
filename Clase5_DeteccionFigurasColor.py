@@ -98,7 +98,7 @@ def figName(contorno, width,heigth):
 
 	return nameFig
 
-image = cv2.imread('./imagenes/Madotsuki.jpg')
+image = cv2.imread('./imagenes/Figuras.jpg')
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 canny = cv2.Canny(gray, 10,150)
 canny = cv2.dilate(canny, None, iterations=1)
